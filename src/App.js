@@ -1,26 +1,65 @@
 import React, { Component } from 'react'
 import './App.css'
-import Article from './Article'
 import { Switch, Route, NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import AlbumList from './AlbumList'
+import AlbumDetail from './AlbumDetail'
+import EditAlbum from './EditAlbum'
+import Artist from './Artist'
+
 
 class App extends Component {
+  constructor({dispatch}, state) {
+    super()
+    this.dispatch = dispatch
+  }
+
   render() {
     return (
       <div className="App">
-        <header><h1>Welcome</h1></header>
+        <header>
+          <h1>Welcome</h1>
+        </header>
         <main>
           <nav>
             <ul>
-              <li><NavLink to='/article/1'>Action One</NavLink></li>
-              <li><NavLink to='/article/2'>Action Two</NavLink></li>
-              <li><NavLink to='/article/3'>Action Three</NavLink></li>
+              <li>
+                <NavLink to="/albums">Albums</NavLink>
+              </li>
+              <li>
+                <NavLink to="/newalbum">Create Album</NavLink>
+              </li>
             </ul>
           </nav>
           <article>
             <Switch>
-              <Route path = '/article/1' render={() => <Article title='One'/>}/>
-              <Route path = '/article/2' render={() => <Article title='Two'/>}/>
-              <Route path = '/article/3' render={() => <Article title='Three'/>}/>
+              <Route path="/albums" render={() => <AlbumList />} />
+              <Route
+                path="/album/:albumid"
+                render={({ match }) => (
+                  <AlbumDetail selectedAlbumId={match.params.albumid} />
+                )}
+              />
+              <Route
+                path="/newalbum"
+                render={() => <EditAlbum key="new" album="NEW" />}
+              />
+              <Route
+                path="/editalbum/:albumid"
+                render={({ match }) => (
+                  <EditAlbum
+                    key="edit"
+                    selectedAlbumId={match.params.albumid}
+                  />
+                )}
+              />
+
+              <Route
+                path="/artist/:artistname"
+                render={({ match }) => {
+                  return <Artist selectedArtistName={match.params.artistname} />
+                }}
+              />
             </Switch>
           </article>
         </main>
@@ -30,4 +69,11 @@ class App extends Component {
   }
 }
 
-export default App
+function mapStateToProps(state) {
+  return {
+    albums: state.albums,
+    ...state
+  }
+}
+
+export default connect(mapStateToProps)(App)
