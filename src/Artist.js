@@ -1,26 +1,25 @@
 import React from 'react'
+import AlbumList from './AlbumList'
 import { connect } from 'react-redux'
-
+import { makeFindArtistAlbums } from './store'
 
 function Artist({ selectedArtistName, artistAlbums, dispatch }) {
   console.log('AA', artistAlbums)
-//   dispatch(makeFindArtistAlbums(selectedArtistName))
+  if (artistAlbums.length <= 0) {
+    dispatch(makeFindArtistAlbums(selectedArtistName))
+  }
 
   return (
     <div>
       <div>{selectedArtistName}</div>
-      {artistAlbums.map(al => (
-        <div key={al.id}>{al.album}</div>
-      ))}
+      <AlbumList albumList={artistAlbums}/>
     </div>
   )
 }
 
 function mapStateToProps(state) {
   return {
-    artistAlbums: state.artistAlbums,
-    ...state
-
+    artistAlbums: state.artistAlbums
   }
 }
 

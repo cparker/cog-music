@@ -9,9 +9,10 @@ import Artist from './Artist'
 
 
 class App extends Component {
-  constructor({dispatch}, state) {
+  constructor({dispatch, albums}, state) {
     super()
     this.dispatch = dispatch
+    this.albums = albums
   }
 
   render() {
@@ -33,7 +34,7 @@ class App extends Component {
           </nav>
           <article>
             <Switch>
-              <Route path="/albums" render={() => <AlbumList />} />
+              <Route path="/albums" render={() => <AlbumList albumList={this.albums}/>} />
               <Route
                 path="/album/:albumid"
                 render={({ match }) => (
