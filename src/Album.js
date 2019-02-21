@@ -2,8 +2,6 @@ import React from 'react'
 import './Album.css'
 
 export default function Album({album, index}) {
-    console.log('PP', album, index)
-
     return (
         <div className='album-row'>
             <span>{album.album}</span>

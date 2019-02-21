@@ -6,6 +6,13 @@ const initialState = {
   artistAlbums: []
 }
 
+export function makeSortAction(field) {
+    return {
+        type: 'SORT',
+        field
+    }
+}
+
 export function makeYearTallyAction() {
     return {
         type: 'YEAR_TALLY'
@@ -118,6 +125,15 @@ function baseReducer(state = initialState, action) {
       })
 
       return Object.assign({}, state, { yearTally: yearTallySorted })
+
+    case 'SORT':
+      const newAlbums = Object.assign({}, {albums:state.albums})
+      newAlbums.albums.sort( (L, R) => {
+          return L[action.field].localeCompare(R[action.field])
+      })
+      console.log('STR', newAlbums)
+      return Object.assign({}, state, {albums:newAlbums.albums})
+
 
     default:
       return state
