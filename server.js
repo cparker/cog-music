@@ -43,7 +43,6 @@ function handleGetAlbum(req, res, next) {
   try {
     idInt = parseInt(req.params.id)
     const foundAlbum = albumData.filter(al => al.id === idInt)
-    console.log('fa', foundAlbum)
     if (foundAlbum.length > 0) {
       res.json(foundAlbum)
     } else {
@@ -55,7 +54,6 @@ function handleGetAlbum(req, res, next) {
 }
 
 function handleInsertAlbum(req, res, next) {
-  console.log('received', req.body)
   const { album, artist, genre, year } = req.body
   if (album && artist && genre && year) {
     const id = new Date().getTime()
@@ -117,7 +115,6 @@ function handleArtists(req, res, next) {
 }
 
 function handleArtist(req, res, next) {
-  console.log('HA', req.params.artistName)
   const artistAlbums = albumData.filter(
     alb => alb.artist.toLowerCase() === req.params.artistName.toLowerCase()
   )
