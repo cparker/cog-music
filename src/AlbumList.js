@@ -15,7 +15,7 @@ function AlbumList({ albumList, storeAlbums }) {
 
   return (
     <div>
-      <div>Total Albums: {albumList.length}</div>
+      <h2>Total Albums: {albumList.length}</h2>
       <div className='al-header'>
         <span>TITLE</span>
         <span>ARTIST</span>

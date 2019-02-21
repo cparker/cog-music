@@ -33,7 +33,19 @@
     background:gray;
 }
 
-.alDetail-row button {
-    margin-top:1.0em;
-    flex:1;
+.alDetail-button-row {
+}
+
+.alDetail-button-row button {
+    background-color: darkgray;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.0rem;
+    margin-right:1.0rem;
+
 }

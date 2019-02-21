@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { makeYearTallyAction } from './store'
+import './AlbumsByYear.css'
 
 AlbumsByYear.defaultProps = {
   yearTally: []
@@ -12,10 +13,15 @@ function AlbumsByYear({ yearTally, dispatch }) {
   }
 
   return (
-    <div>
+    <div className='by-year-container'>
+      <h2>Albums By Year</h2>
+      <div className='by-year-header'>
+        <span>Year</span>
+        <span># Albums</span>
+      </div>
       {yearTally.map(([year, tally], index) => {
         return (
-          <div key={index}>
+          <div className='by-year-row' key={index}>
             <span>{year}</span> <span>{tally}</span>
           </div>
         )

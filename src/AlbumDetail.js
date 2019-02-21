@@ -41,7 +41,7 @@ const AlbumDetail = withRouter(
         <div className='alDetail-row'><span>GENRE</span><span>{selectedAlbum.genre}</span></div>
         <div className='alDetail-row'><span>YEAR</span><span>{selectedAlbum.year}</span></div>
 
-        <div className='alDetail-row'>
+        <div className='alDetail-button-row'>
             <button
             onClick={() => {
                 history.replace(`/editalbum/${selectedAlbumId}`)

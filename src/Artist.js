@@ -4,14 +4,13 @@ import { connect } from 'react-redux'
 import { makeFindArtistAlbums } from './store'
 
 function Artist({ selectedArtistName, artistAlbums, dispatch }) {
-  console.log('AA', artistAlbums)
   if (artistAlbums.length <= 0) {
     dispatch(makeFindArtistAlbums(selectedArtistName))
   }
 
   return (
     <div>
-      <div>{selectedArtistName}</div>
+      <h2>Albums by {selectedArtistName}</h2>
       <AlbumList albumList={artistAlbums}/>
     </div>
   )

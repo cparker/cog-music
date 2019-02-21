@@ -3,6 +3,10 @@
   padding: 1.5rem;
 }
 
+.nav-active {
+  text-decoration: underline;
+}
+
 main {
   display: flex;
   flex-direction: row;
@@ -22,6 +26,15 @@ nav {
   border-right: 4px solid gray;
 }
 
+nav a {
+  text-decoration:none;
+  color:black;
+}
+
+nav a:hover {
+  background:gray;
+}
+
 nav ul {
   list-style-type: none;
 }
@@ -29,4 +42,15 @@ nav ul {
 article {
   flex: 5;
   padding:1.5rem;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1.0em;
 }

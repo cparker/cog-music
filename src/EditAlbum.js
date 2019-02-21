@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { makeNewAlbumAction, makeEditAlbumAction } from './store'
 import { withRouter } from 'react-router-dom'
+import './EditAlbum.css'
+
 
 const EditAlbum = withRouter(
-  ({ albums, dispatch, history, selectedAlbumId }) => {
+  ({ albums, dispatch, history, selectedAlbumId, title }) => {
     const selectedAlbumIdInt = selectedAlbumId && parseInt(selectedAlbumId)
     console.log('IN EDIT, selected is', selectedAlbumIdInt)
 
@@ -47,40 +49,54 @@ const EditAlbum = withRouter(
     }
 
     return (
-      <form onSubmit={handleSave.bind(this)}>
-        <div>
+      <React.Fragment>
+      <h2>{title}</h2>
+      <form className='edit-album-form' onSubmit={handleSave.bind(this)}>
+        <div className='form-row'>
+          <label>Album Name</label>
           <input
             type="text"
             value={state.album}
             onChange={handleFieldChange('album').bind(this)}
           />
         </div>
-        <div>
+        <div className='form-row'>
+          <label>Artist</label>
           <input
             type="text"
             value={state.artist}
             onChange={handleFieldChange('artist').bind(this)}
           />
         </div>
-        <div>
+        <div className='form-row'>
+          <label>Genre</label>
           <input
             type="text"
             value={state.genre}
             onChange={handleFieldChange('genre').bind(this)}
           />
         </div>
-        <div>
+        <div className='form-row'>
+          <label>Year</label>
           <input
             type="text"
             value={state.year}
             onChange={handleFieldChange('year').bind(this)}
           />
         </div>
-        <input type="submit" value="SAVE" />
+        <div className='button-row'>
+            <input type="submit" value="SAVE" />
+        </div>
       </form>
+      </React.Fragment>
+      
     )
   }
 )
+
+EditAlbum.defaultProps = {
+    title: ''
+}
 
 function mapStateToProps(state) {
   return {

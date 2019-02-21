@@ -22,22 +22,22 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>Welcome</h1>
+          <h1>Cog Music</h1>
         </header>
         <main>
           <nav>
             <ul>
               <li>
-                <NavLink to="/albums">Albums</NavLink>
+                <NavLink to="/albums" activeClassName='nav-active'>Albums</NavLink>
               </li>
               <li>
-                <NavLink to="/newalbum">Create Album</NavLink>
+                <NavLink to="/newalbum" activeClassName='nav-active'>Create Album</NavLink>
               </li>
               <li>
-                <NavLink onClick={() => this.dispatch(makeGenreTallyAction())} to="/bygenre">Albums by Genre</NavLink>
+                <NavLink onClick={() => this.dispatch(makeGenreTallyAction())} to="/bygenre" activeClassName='nav-active'>Albums by Genre</NavLink>
               </li>
               <li>
-                <NavLink onClick={() => this.dispatch(makeYearTallyAction())} to="/byyear">Albums by Year</NavLink>
+                <NavLink onClick={() => this.dispatch(makeYearTallyAction())} to="/byyear" activeClassName='nav-active'>Albums by Year</NavLink>
               </li>
             </ul>
           </nav>
@@ -55,7 +55,7 @@ class App extends Component {
               />
               <Route
                 path="/newalbum"
-                render={() => <EditAlbum key="new" album="NEW" />}
+                render={() => <EditAlbum key="new" title='New Album' />}
               />
               <Route
                 path="/editalbum/:albumid"
@@ -63,6 +63,7 @@ class App extends Component {
                   <EditAlbum
                     key="edit"
                     selectedAlbumId={match.params.albumid}
+                    title='Edit Album'
                   />
                 )}
               />
@@ -87,7 +88,6 @@ class App extends Component {
             </Switch>
           </article>
         </main>
-        <footer>about us</footer>
       </div>
     )
   }
