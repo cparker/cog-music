@@ -1,0 +1,25 @@
+.by-genre-container {
+    width:30vw;
+}
+
+.by-genre-header {
+    display:flex;
+    flex-direction: row;
+    font-weight: bold;
+}
+
+.by-genre-header span {
+    flex:1;
+    border-bottom:2px solid gray;
+    margin-right:5px;
+}
+
+.by-genre-row {
+    display:flex;
+    flex-direction: row;
+}
+
+.by-genre-row span {
+    flex:1
+}
+

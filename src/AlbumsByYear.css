@@ -1,0 +1,25 @@
+.by-year-container {
+    width:30vw;
+}
+
+.by-year-header {
+    display:flex;
+    flex-direction: row;
+    font-weight: bold;
+}
+
+.by-year-header span {
+    flex:1;
+    border-bottom:2px solid gray;
+    margin-right:5px;
+}
+
+.by-year-row {
+    display:flex;
+    flex-direction: row;
+}
+
+.by-year-row span {
+    flex:1
+}
+
