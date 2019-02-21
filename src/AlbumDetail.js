@@ -12,8 +12,8 @@ function handleDeleteAlbum(id, dispatch, history) {
 }
 
 function handleSelectArtist(artist, dispatch) {
-    console.log('selected artist', artist)
-    dispatch(makeFindArtistAlbums(artist))
+  console.log('selected artist', artist)
+  dispatch(makeFindArtistAlbums(artist))
 }
 
 const AlbumDetail = withRouter(
@@ -21,19 +21,40 @@ const AlbumDetail = withRouter(
     console.log('AD props', albums)
     const selectedAlbumIdInt = parseInt(selectedAlbumId)
     const selectedAlbum = albums.find(al => al.id === selectedAlbumIdInt)
-    return (
+
+    const notFound = <div>Sorry, we don't have that album</div>
+    const albumDisplay = () => (
       <div>
         <div>ALBUM {selectedAlbum.album}</div>
-        <div><NavLink onClick={() => handleSelectArtist(selectedAlbum.artist, dispatch)} to={`/artist/${encodeURIComponent(selectedAlbum.artist)}`}>ARTIST {selectedAlbum.artist}</NavLink></div>
+        <div>
+          <NavLink
+            onClick={() => handleSelectArtist(selectedAlbum.artist, dispatch)}
+            to={`/artist/${encodeURIComponent(selectedAlbum.artist)}`}
+          >
+            ARTIST {selectedAlbum.artist}
+          </NavLink>
+        </div>
         <div>GENRE {selectedAlbum.genre}</div>
         <div>YEAR {selectedAlbum.year}</div>
 
-        <button onClick={() => {history.replace(`/editalbum/${selectedAlbumId}`)}}>EDIT</button>
-        <button onClick={() => handleDeleteAlbum(selectedAlbumIdInt, dispatch, history)}>
+        <button
+          onClick={() => {
+            history.replace(`/editalbum/${selectedAlbumId}`)
+          }}
+        >
+          EDIT
+        </button>
+        <button
+          onClick={() =>
+            handleDeleteAlbum(selectedAlbumIdInt, dispatch, history)
+          }
+        >
           DELETE
         </button>
       </div>
     )
+
+    return selectedAlbum ? albumDisplay() : notFound
   }
 )
 

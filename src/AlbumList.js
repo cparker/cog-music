@@ -7,7 +7,10 @@ AlbumList.defaultProps = {
     albumList:[]
 }
 
-function AlbumList({albumList}) {
+function AlbumList({albumList, storeAlbums}) {
+    if (albumList.length <= 0) {
+        albumList = storeAlbums
+    }
 
     return (
         <div>

@@ -6,11 +6,23 @@ const initialState = {
   artistAlbums: []
 }
 
-export function makeFindArtistAlbums(artistName) {
+export function makeYearTallyAction() {
     return {
-        type: 'FIND_ARTIST_ALBUMS',
-        artistName
+        type: 'YEAR_TALLY'
     }
+}
+
+export function makeGenreTallyAction() {
+  return {
+    type: 'GENRE_TALLY'
+  }
+}
+
+export function makeFindArtistAlbums(artistName) {
+  return {
+    type: 'FIND_ARTIST_ALBUMS',
+    artistName
+  }
 }
 
 export function makeNewAlbumAction(albumDetail) {
@@ -64,7 +76,48 @@ function baseReducer(state = initialState, action) {
       })
 
     case 'FIND_ARTIST_ALBUMS':
-      return Object.assign({}, state, {artistAlbums : state.albums.filter(al => al.artist === action.artistName)})
+      return Object.assign({}, state, {
+        artistAlbums: state.albums.filter(al => al.artist === action.artistName)
+      })
+
+    case 'GENRE_TALLY':
+      console.log('computing genre tally')
+      const genreTally = state.albums.reduce((acc, { genre }) => {
+        if (acc[genre] !== undefined) {
+          acc[genre] += 1
+        } else {
+          acc[genre] = 1
+        }
+        return acc
+      }, {})
+      const tallySorted = Object.entries(genreTally)
+      tallySorted.sort((left, right) => {
+        const [, lTally] = left
+        const [, rTally] = right
+        return rTally - lTally
+      })
+
+      return Object.assign({}, state, { genreTally: tallySorted })
+
+    case 'YEAR_TALLY':
+      console.log('computing year tally')
+      const yearTally = state.albums.reduce((acc, { year }) => {
+        if (acc[year] !== undefined) {
+          acc[year] += 1
+        } else {
+          acc[year] = 1
+        }
+        return acc
+      }, {})
+
+      const yearTallySorted = Object.entries(yearTally)
+      yearTallySorted.sort((left, right) => {
+        const [, lTally] = left
+        const [, rTally] = right
+        return rTally - lTally
+      })
+
+      return Object.assign({}, state, { yearTally: yearTallySorted })
 
     default:
       return state

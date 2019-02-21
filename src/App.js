@@ -6,6 +6,9 @@ import AlbumList from './AlbumList'
 import AlbumDetail from './AlbumDetail'
 import EditAlbum from './EditAlbum'
 import Artist from './Artist'
+import AlbumsByGenre from './AlbumsByGenre'
+import AlbumsByYear from './AlbumsByYear'
+import { makeGenreTallyAction, makeYearTallyAction } from './store'
 
 
 class App extends Component {
@@ -30,11 +33,20 @@ class App extends Component {
               <li>
                 <NavLink to="/newalbum">Create Album</NavLink>
               </li>
+              <li>
+                <NavLink onClick={() => this.dispatch(makeGenreTallyAction())} to="/bygenre">Albums by Genre</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={() => this.dispatch(makeYearTallyAction())} to="/byyear">Albums by Year</NavLink>
+              </li>
             </ul>
           </nav>
           <article>
             <Switch>
-              <Route path="/albums" render={() => <AlbumList albumList={this.albums}/>} />
+              <Route path="/albums" render={() => {
+                console.log('rendering AL, ', this.albums)
+                return <AlbumList />
+              }} />
               <Route
                 path="/album/:albumid"
                 render={({ match }) => (
@@ -61,6 +73,17 @@ class App extends Component {
                   return <Artist selectedArtistName={match.params.artistname} />
                 }}
               />
+
+              <Route 
+                path='/bygenre'
+                render={() => <AlbumsByGenre />}
+              />
+
+              <Route 
+                path='/byyear'
+                render={() => <AlbumsByYear />}
+              />
+
             </Switch>
           </article>
         </main>
