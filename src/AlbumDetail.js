@@ -7,19 +7,16 @@ import { makeFindArtistAlbums } from './store'
 import './AlbumDetail.css'
 
 function handleDeleteAlbum(id, dispatch, history) {
-  console.log('lets kill', id)
   history.replace('/albums')
   dispatch(makeDeleteAlbumAction(id))
 }
 
 function handleSelectArtist(artist, dispatch) {
-  console.log('selected artist', artist)
   dispatch(makeFindArtistAlbums(artist))
 }
 
 const AlbumDetail = withRouter(
   ({ selectedAlbumId, albums, dispatch, history }) => {
-    console.log('AD props', albums)
     const selectedAlbumIdInt = parseInt(selectedAlbumId)
     const selectedAlbum = albums.find(al => al.id === selectedAlbumIdInt)
 

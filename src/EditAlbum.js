@@ -8,7 +8,6 @@ import './EditAlbum.css'
 const EditAlbum = withRouter(
   ({ albums, dispatch, history, selectedAlbumId, title }) => {
     const selectedAlbumIdInt = selectedAlbumId && parseInt(selectedAlbumId)
-    console.log('IN EDIT, selected is', selectedAlbumIdInt)
 
     let initialState = {}
     if (selectedAlbumIdInt !== undefined) {
@@ -22,13 +21,11 @@ const EditAlbum = withRouter(
       }
     }
 
-    console.log('initial state', initialState)
 
     const [state, setState] = useState(initialState)
 
     function handleFieldChange(fieldName) {
       return event => {
-        console.log('value', event.target.value)
         const change = {}
         change[fieldName] = event.target.value
         setState(Object.assign({}, state, change))
@@ -36,7 +33,6 @@ const EditAlbum = withRouter(
     }
 
     function handleSave(event) {
-      console.log('on submit, state is ', state)
       if (selectedAlbumIdInt !== undefined) {
         dispatch(makeEditAlbumAction(state, selectedAlbumIdInt))
         history.replace(`/album/${selectedAlbumIdInt}`)

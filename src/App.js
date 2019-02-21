@@ -44,7 +44,6 @@ class App extends Component {
           <article>
             <Switch>
               <Route path="/albums" render={() => {
-                console.log('rendering AL, ', this.albums)
                 return <AlbumList />
               }} />
               <Route

@@ -8,7 +8,6 @@ AlbumsByGenre.defaultProps = {
 }
 
 function AlbumsByGenre({ genreTally, dispatch }) {
-  console.log(genreTally)
 
   if (genreTally.length <= 0) {
     dispatch(makeGenreTallyAction())
