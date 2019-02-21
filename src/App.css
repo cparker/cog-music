@@ -22,6 +22,10 @@ nav {
   border-right: 4px solid gray;
 }
 
+nav ul {
+  list-style-type: none;
+}
+
 article {
   flex: 5;
   padding:1.5rem;

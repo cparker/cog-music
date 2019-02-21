@@ -4,6 +4,7 @@ import { makeDeleteAlbumAction } from './store'
 import { withRouter } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { makeFindArtistAlbums } from './store'
+import './AlbumDetail.css'
 
 function handleDeleteAlbum(id, dispatch, history) {
   console.log('lets kill', id)
@@ -24,33 +25,38 @@ const AlbumDetail = withRouter(
 
     const notFound = <div>Sorry, we don't have that album</div>
     const albumDisplay = () => (
-      <div>
-        <div>ALBUM {selectedAlbum.album}</div>
-        <div>
-          <NavLink
+      <div className='alDetail-container'>
+        <div className='alDetail-row'><span>ALBUM</span><span>{selectedAlbum.album}</span></div>
+        <div className='alDetail-row selectable' onClick={() => {
+            handleSelectArtist(selectedAlbum.artist, dispatch)
+            history.replace(`/artist/${encodeURIComponent(selectedAlbum.artist)}`)
+        }}>
+          {/* <NavLink
             onClick={() => handleSelectArtist(selectedAlbum.artist, dispatch)}
             to={`/artist/${encodeURIComponent(selectedAlbum.artist)}`}
-          >
-            ARTIST {selectedAlbum.artist}
-          </NavLink>
+          > */}
+            <span>ARTIST</span><span>{selectedAlbum.artist}</span>
+          {/* </NavLink> */}
         </div>
-        <div>GENRE {selectedAlbum.genre}</div>
-        <div>YEAR {selectedAlbum.year}</div>
+        <div className='alDetail-row'><span>GENRE</span><span>{selectedAlbum.genre}</span></div>
+        <div className='alDetail-row'><span>YEAR</span><span>{selectedAlbum.year}</span></div>
 
-        <button
-          onClick={() => {
-            history.replace(`/editalbum/${selectedAlbumId}`)
-          }}
-        >
-          EDIT
-        </button>
-        <button
-          onClick={() =>
-            handleDeleteAlbum(selectedAlbumIdInt, dispatch, history)
-          }
-        >
-          DELETE
-        </button>
+        <div className='alDetail-row'>
+            <button
+            onClick={() => {
+                history.replace(`/editalbum/${selectedAlbumId}`)
+            }}
+            >
+            EDIT
+            </button>
+            <button
+            onClick={() =>
+                handleDeleteAlbum(selectedAlbumIdInt, dispatch, history)
+            }
+            >
+            DELETE
+            </button>
+        </div>
       </div>
     )
 

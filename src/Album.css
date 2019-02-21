@@ -1,0 +1,9 @@
+.album-row {
+    display:flex;
+    flex-direction:row;
+    padding:0.5rem;
+}
+
+.album-row span {
+    flex:1;
+}

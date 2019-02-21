@@ -1,0 +1,39 @@
+.alDetail-container {
+    width:30vw;
+}
+
+.alDetail-row {
+    display:flex;
+    flex-direction: row;
+}
+
+.alDetail-row a {
+    display:inline-block;
+    
+}
+
+.alDetail-row span:nth-child(1) {
+    font-weight: bold;
+    flex:1;
+    text-align: right;
+    margin-right: 1.0em;
+    border-right: 4px solid gray;
+    padding-right: 0.5em;
+}
+
+.alDetail-row span:nth-child(2) {
+    flex:2;
+}
+
+.alDetail-row.selectable {
+    cursor:pointer;
+}
+
+.alDetail-row.selectable:hover {
+    background:gray;
+}
+
+.alDetail-row button {
+    margin-top:1.0em;
+    flex:1;
+}

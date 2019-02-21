@@ -1,0 +1,29 @@
+
+.al-header {
+    font-weight:bold;
+    display:flex;
+    flex-direction:row;
+}
+
+.al-header span {
+    flex:1;
+}
+
+.al-table {
+    display:flex;
+    flex-direction:column;
+}
+
+.al-table a:nth-child(odd) {
+    background:lightgray;
+}
+
+.al-table a {
+    text-decoration: none;
+    color: black;
+}
+
+.al-table a:hover {
+    background:gray;
+}
+
